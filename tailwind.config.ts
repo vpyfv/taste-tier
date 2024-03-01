@@ -18,6 +18,8 @@ const config: Config = {
       backgroundColor: {
         card: "#4E433F",
         background: "#73635b",
+        button: "#fbf1ec",
+        buttontext: "#73635b",
       },
     },
   },

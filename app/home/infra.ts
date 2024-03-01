@@ -1,5 +1,5 @@
 import { addDoc, collection, getDocs, onSnapshot, query } from "firebase/firestore";
-import db from "../server/db/firestore";
+import { FirebaseDB } from "../server/firebase";
 
 export type Restaurant = {
   id: string;
@@ -9,7 +9,7 @@ export type Restaurant = {
 };
 
 export function getRestaurantsDataStream(cb: (restaurants: Restaurant[]) => void) {
-  const unsubscribe = onSnapshot(query(collection(db, "restaurant")), (querySnapshot) => {
+  const unsubscribe = onSnapshot(query(collection(FirebaseDB, "restaurant")), (querySnapshot) => {
     const result = querySnapshot.docs.map((d) => {
       console.log("calling");
       return {

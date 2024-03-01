@@ -34,7 +34,7 @@ const ratingLengthCss = (length: number): string => {
 const RatingCard = (restaurant: Restaurant) => {
   return (
     <div className="flex items-center">
-      <div className="bg-card m-3 p-3 rounded-2xl w-3/4 shadow-md hover:shadow-2xl">
+      <div className="bg-card m-3 p-3 rounded-2xl w-full shadow-md hover:shadow-2xl">
         <div className="flex justify-between text-text-color-p text-xl">
           <div>{restaurant.name}</div>
           <div>{restaurant.userCount}</div>
