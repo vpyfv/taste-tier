@@ -24,7 +24,7 @@ const HomePage = () => {
       </div>
       <div className="w-3/4 mt-40 ml-20 h-4/5 overflow-y-scroll relative">
         {restaurants.map((res, i) => (
-          <RatingCard key={i} name={res.name} score={res.score} userCount={res.userCount} id={res.id}></RatingCard>
+          <RatingCard key={i} restaurant={res}></RatingCard>
         ))}
       </div>
     </div>

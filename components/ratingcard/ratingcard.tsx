@@ -31,17 +31,19 @@ const ratingLengthCss = (length: number): string => {
   return "w-10";
 };
 
-const RatingCard = (restaurant: Restaurant) => {
+const RatingCard = (params: { restaurant: Restaurant }) => {
   return (
     <div className="flex items-center">
       <div className="bg-card m-3 p-3 rounded-2xl w-full shadow-md hover:shadow-2xl">
         <div className="flex justify-between text-text-color-p text-xl">
-          <div>{restaurant.name}</div>
-          <div>{restaurant.userCount}</div>
+          <div>{params.restaurant.name}</div>
+          <div>{params.restaurant.ratingCount}</div>
         </div>
-        <div className={`h-5 bg-background ${ratingLengthCss(restaurant.score)} rounded-full mt-4 mb-2`}></div>
+        <div
+          className={`h-5 bg-background ${ratingLengthCss(params.restaurant.avgScore)} rounded-full mt-4 mb-2`}
+        ></div>
       </div>
-      <div className="ml-3 font-semibold text-text-color-p text-xl">{restaurant.score}</div>
+      <div className="ml-3 mr-3 font-semibold text-text-color-p text-xl">{params.restaurant.avgScore}</div>
     </div>
   );
 };
