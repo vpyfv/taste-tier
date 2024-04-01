@@ -19,8 +19,8 @@ const RatingPage = () => {
     generateData().then(() => {});
     getRestaurants()
       .then((restaurants) => {
-        // setRestaurantsLeft(restaurants);
-        setRestaurantsRight(restaurants.slice(0, 10));
+        setRestaurantsLeft(restaurants);
+        // setRestaurantsRight(restaurants.slice(0, 10));
       })
       .catch((_) => {
         console.log("error fetching data");
