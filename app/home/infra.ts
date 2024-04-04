@@ -13,7 +13,6 @@ export function getRestaurantsDataStream(cb: (restaurants: Restaurant[]) => void
   const q = query(restaurantRef, orderBy("avg_score", "desc"), orderBy("rating_count", "desc"), limit(10));
   const unsubscribe = onSnapshot(query(q), (querySnapshot) => {
     const result = querySnapshot.docs.map((d) => {
-      console.log("calling");
       return {
         id: d.id,
         name: d.data().name,

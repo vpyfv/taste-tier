@@ -1,6 +1,17 @@
-import { addDoc, collection, doc, getCountFromServer, getDocs, limit, query, setDoc } from "@firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getCountFromServer,
+  getDocs,
+  limit,
+  query,
+  serverTimestamp,
+  setDoc,
+} from "@firebase/firestore";
 import { FirebaseDB } from "../server/firebase";
 import { RestRating, RestSubmit } from "./types";
+import { randomUUID } from "crypto";
 
 //get restaurants
 export const getRestaurants = async (): Promise<RestRating[]> => {
@@ -27,19 +38,4 @@ export const submitRatings = async (ratings: RestSubmit[]) => {
     console.log("calling insert");
     await setDoc(doc(FirebaseDB, "restaurant", rating.id, "users", rating.userId), restRatingDoc);
   });
-};
-
-export const generateData = async () => {
-  const restRef = collection(FirebaseDB, "restaurant");
-  const q = query(restRef, limit(1));
-  const docs = await getDocs(q);
-  if (docs.docs.length == 0) {
-    [...Array(20)].forEach(async (e, i) => {
-      await addDoc(restRef, {
-        name: "rest" + i,
-        avg_score: Math.floor(Math.random() * 10) + 1,
-        rating_count: Math.floor(Math.random() * 100) + 1,
-      });
-    });
-  }
 };

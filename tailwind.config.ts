@@ -14,6 +14,7 @@ const config: Config = {
       },
       colors: {
         "text-color-p": "#fbf1ec",
+        "text-color-s": "#4E433F",
       },
       backgroundColor: {
         card: "#4E433F",
