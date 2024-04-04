@@ -25,10 +25,10 @@ const RestaurantPage = ({ params: { id } }: { params: { id: string } }) => {
         <>
           <div>
             <Image src={restDetails.image} alt="" width={500} height={500} className="rounded-md shadow-lg"></Image>
-            <h1 className="text-center mt-10 text-3xl">{restDetails.name}</h1>
+            <h1 className="text-center mt-10 text-3xl font-semibold">{restDetails.name}</h1>
             <div className="flex justify-between mt-5">
               <p>
-                <span className="text-xl">Address: </span>
+                <span className="text-xl font-semibold">Address: </span>
                 <span className="font-light">{restDetails.address}</span>
               </p>
               <Link href={restDetails.location} rel="noopener noreferrer" target="_blank">
@@ -37,21 +37,19 @@ const RestaurantPage = ({ params: { id } }: { params: { id: string } }) => {
             </div>
             <div className="h-2"></div>
             <div>
-              <span className="text-xl">Timings: </span>
+              <span className="text-xl font-semibold">Timings: </span>
               <span className="font-light">{restDetails.timings}</span>
             </div>
           </div>
           <div className="w-3/4 pl-40">
-            <p>ratings</p>
+            <h1 className="text-lg font-semibold mb-4">User Ratings</h1>
             <div className="max-h-60 overflow-y-scroll">
               <div>
                 <Ratings userRatings={restDetails.userRatings}></Ratings>
               </div>
             </div>
-
-            <div className="h-14"></div>
-            <h1 className="text-center">Users who rated recently</h1>
-            <div className="flex flex-wrap p-10">
+            <h1 className="text-lg font-semibold mt-20 mb-6">Users who rated recently</h1>
+            <div className="flex flex-wrap">
               <Users users={restDetails.recentUsers}></Users>
             </div>
           </div>

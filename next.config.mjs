@@ -9,10 +9,10 @@ const nextConfig = {
       },
       {
         protocol:"https",
-        hostname:"demos.creative-tim.com"
+        hostname:"images.pexels.com"
       }
     ]
-  }
+  },
 };
 
 export default nextConfig;
