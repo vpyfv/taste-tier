@@ -12,7 +12,7 @@ const Ratings = ({ userRatings }: { userRatings: RestUserRatingDetail[] }) => {
         </div>
         <p>
           {userRating.userCount}
-          <span className="text-sm font-extralight">{userRating.userCount == 1 ? "  user" : "  users"}</span>
+          <span className="text-xs font-extralight">{userRating.userCount == 1 ? "  user" : "  users"}</span>
         </p>
       </div>
     ) : (

@@ -17,7 +17,7 @@ const NavBar = () => {
         ) : (
           <>
             <NavLink id={2} path={"/rating"} title={"rate"}></NavLink>
-            <NavLink id={2} path={"/profile"} title={"profile"}></NavLink>
+            <NavLink id={2} path={`/user/${user.uid}`} title={"profile"}></NavLink>
             <NavLink id={2} path={"/suggest"} title={"suggest"}></NavLink>
             <NavLink id={2} path={"/auth/signout"} title={"sign out"}></NavLink>
           </>

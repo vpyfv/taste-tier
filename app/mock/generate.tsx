@@ -30,9 +30,9 @@ const createUsers = async (userIds: string[]): Promise<boolean> => {
   if (docs.docs.length == 0) {
     userIds.forEach(async (userId, i) => {
       await setDoc(doc(FirebaseDB, "user", userId), {
-        profile_pic: "",
+        profile_pic: "https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg",
         created_time: serverTimestamp(),
-        bio: "",
+        bio: "Lorem ipsum dolor sit amet consectetur. Cras tincidunt hac duis sit faucibus duis. Est lobortis sed a turpis placerat luctus enim sit pulvinar. Dolor nunc et mauris sapien fermentum a sed. Quam tellus ametpharetra eget vehicula maecenas nisi. Imperdiet leo amet non ut pellentesque consectetur metus eratnascetur. Adipiscing imperdiet ac tincidunt ipsum vel ipsum non massa. Nisi mi sed proin fringilla acadipiscing. Sapien eu donec quis orci aliquam. Volutpat purus quis lacus varius eu iaculis risus. Dolorlectus facilisi dignissim eu. Amet consectetur urna egestas in viverra. Accumsan donec odio nulla",
         user_name: userId,
       });
     });

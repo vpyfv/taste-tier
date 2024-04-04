@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import CustomButton, { CustomButtonType } from "../../../components/button/custom-button";
 import { UserAuth } from "../authContext";
 import { redirect } from "next/navigation";
+import { createUserIfNotExists } from "./infra";
 
 const SignInPage = () => {
   const { user, googleSignIn } = UserAuth();
@@ -13,7 +14,7 @@ const SignInPage = () => {
     },
   };
   useEffect(() => {
-    console.log(user);
+    user != null ? createUserIfNotExists(user.uid, user.displayName).then((_) => {}) : {};
     user != null ? redirect("/home") : "";
   }, [user]);
 
