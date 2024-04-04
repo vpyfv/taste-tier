@@ -1,48 +1,23 @@
+import Link from "next/link";
 import { Restaurant } from "../../app/home/infra";
-
-const ratingLengthCss = (length: number): string => {
-  if (length == 10) {
-    return "w-full";
-  }
-  if (length == 9) {
-    return "w-11/12";
-  }
-  if (length == 8) {
-    return "w-4/5";
-  }
-  if (length == 7) {
-    return "w-3/4";
-  }
-  if (length == 6) {
-    return "w-3/5";
-  }
-  if (length == 5) {
-    return "w-1/2";
-  }
-  if (length == 4) {
-    return "w-2/5";
-  }
-  if (length == 3) {
-    return "w-1/3";
-  }
-  if (length == 2) {
-    return "w-1/5";
-  }
-  return "w-10";
-};
+import RatingLength from "./ratingLegth";
 
 const RatingCard = (params: { restaurant: Restaurant }) => {
   return (
     <div className="flex items-center">
-      <div className="bg-card m-3 p-3 rounded-2xl w-full shadow-md hover:shadow-2xl">
-        <div className="flex justify-between text-text-color-p text-xl">
+      <Link
+        className="bg-card m-3 p-3 rounded-2xl w-full shadow-md text-text-color-p hover:bg-text-color-p hover:text-text-color-s hover:shadow-2xl"
+        href={`/restaurant/${params.restaurant.id}`}
+      >
+        <div className="flex justify-between text-xl">
           <div>{params.restaurant.name}</div>
-          <div>{params.restaurant.ratingCount}</div>
+          <div className="flex items-center">
+            <p>{params.restaurant.ratingCount}</p>
+            <p className="ml-2 font-light text-xs ">ratings</p>
+          </div>
         </div>
-        <div
-          className={`h-5 bg-background ${ratingLengthCss(params.restaurant.avgScore)} rounded-full mt-4 mb-2`}
-        ></div>
-      </div>
+        <RatingLength length={params.restaurant.avgScore} ratingColor="bg-background" />
+      </Link>
       <div className="ml-3 mr-3 font-semibold text-text-color-p text-xl">{params.restaurant.avgScore}</div>
     </div>
   );

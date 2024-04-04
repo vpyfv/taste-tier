@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import RatingColumns from "./rating-column";
 import { DragDropContext, DropResult } from "@hello-pangea/dnd";
 import { RestRating, RestSubmit } from "./types";
-import { generateData, getRestaurants, submitRatings } from "./infra";
+import { getRestaurants, submitRatings } from "./infra";
 import { UserAuth } from "../auth/authContext";
 import { serverTimestamp } from "@firebase/firestore";
 import { redirect } from "next/navigation";
@@ -16,7 +16,7 @@ const RatingPage = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
-    generateData().then(() => {});
+    // generateData().then(() => {});
     getRestaurants()
       .then((restaurants) => {
         setRestaurantsLeft(restaurants);
