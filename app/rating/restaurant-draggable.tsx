@@ -11,7 +11,9 @@ const RestaurantDraggable = (param: { restaurant: RestRating; index: number; isL
           {...provide.draggableProps}
           {...provide.dragHandleProps}
         >
-          <p className={`bg-card px-6 py-3 rounded-xl m-2 flex-1`}>{param.restaurant.name}</p>
+          <p className={`border border-card px-6 py-3 rounded-xl m-2 flex-1 hover:bg-card hover:text-text-color-s`}>
+            {param.restaurant.name}
+          </p>
           <p className={`${param.isLeft ? "invisible" : "visible text-2xl ml-2 font-semibold"}`}>{10 - param.index}</p>
         </div>
       )}

@@ -21,7 +21,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <AuthContextProvider>
           <NavBar></NavBar>
-          <div className=" ml-20 mr-20">{children}</div>
+          <div className=" ml-20 mr-20 font-mono">{children}</div>
         </AuthContextProvider>
       </body>
     </html>

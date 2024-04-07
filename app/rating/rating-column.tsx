@@ -18,7 +18,9 @@ const RatingColumns = (params: {
         <Droppable droppableId="restaurants-left" direction="horizontal">
           {(provided, snapshot) => (
             <div
-              className={`flex flex-wrap w-fit rounded-2xl bg-opacity-20 ${snapshot.isDraggingOver ? "bg-card" : null}`}
+              className={`flex flex-wrap w-fit rounded-2xl bg-opacity-20 ${
+                snapshot.isDraggingOver ? "border-2 border-card" : null
+              }`}
               ref={provided.innerRef}
               {...provided.droppableProps}
             >
@@ -36,7 +38,9 @@ const RatingColumns = (params: {
           {(provided, snapshot) => (
             <div className="flex flex-col ">
               <div
-                className={`min-h-60 rounded-2xl bg-opacity-10 ${snapshot.isDraggingOver ? "bg-gray-800" : null}`}
+                className={`min-h-60 rounded-2xl bg-opacity-10 ${
+                  snapshot.isDraggingOver ? "border-2 border-card" : null
+                }`}
                 ref={provided.innerRef}
                 {...provided.droppableProps}
               >
@@ -47,7 +51,7 @@ const RatingColumns = (params: {
               </div>
               {!params.isSubmitting ? (
                 <button
-                  className={`w-min mx-auto bg-button px-8 py-1 rounded-lg mt-6 ${
+                  className={`w-min mx-auto bg-button px-8 py-2 rounded-lg mt-6 bg-card text-text-color-s  ${
                     params.restaurantsRight.length == 10 ? "visible" : "invisible"
                   }`}
                   onClick={params.onSubmit}

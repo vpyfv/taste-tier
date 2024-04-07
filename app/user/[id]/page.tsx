@@ -32,7 +32,7 @@ const UserPage = ({ params: { id } }: { params: { id: string } }) => {
               {user != null && user.uid == id ? (
                 <Link
                   href={`/user/${id}/update`}
-                  className="px-4 py-2 my-4 bg-card rounded-xl hover:bg-text-color-p hover:text-text-color-s hover:shadow-2xl"
+                  className="px-8 py-2 my-10 border border-card rounded-xl hover:bg-text-color-p hover:text-text-color-s hover:shadow-2xl"
                 >
                   Edit profile
                 </Link>

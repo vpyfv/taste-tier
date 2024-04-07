@@ -53,7 +53,15 @@ const createRestaurants = async (restIds: string[]): Promise<boolean> => {
         rating_count: 0,
         user_ratings: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         address: "some address",
-        timings: "9AM-10PM",
+        timings: [
+          "Monday: 10:00 AM - 8:00 PM",
+          "Tuesday: 10:00 AM - 8:00 PM",
+          "Wednesday: 10:00 AM - 8:00 PM",
+          "Thursday: 10:00 AM - 8:00 PM",
+          "Friday: 10:00 AM - 8:00 PM",
+          "Saturday: 10:00 AM - 8:00 PM",
+          "Sunday: 10:00 AM - 8:00 PM",
+        ],
         location: "https://maps.app.goo.gl/2rXgz7VyC8a9P53U8",
         image:
           "https://images.unsplash.com/photo-1707343844152-6d33a0bb32c3?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
