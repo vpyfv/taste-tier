@@ -2,11 +2,11 @@ import Link from "next/link";
 import { Restaurant } from "../../app/home/infra";
 import RatingLength from "./ratingLegth";
 
-const RatingCard = (params: { restaurant: Restaurant }) => {
+const RatingCard = (params: { restaurant: Restaurant; index: number }) => {
   return (
     <div className="flex items-center">
       <Link
-        className="bg-card m-3 p-3 rounded-2xl w-full shadow-md text-text-color-p hover:bg-text-color-p hover:text-text-color-s hover:shadow-2xl"
+        className="m-3 p-3 rounded-2xl w-full text-text-color-p hover:bg-card hover:text-text-color-s border hover:drop-shadow-xl"
         href={`/restaurant/${params.restaurant.id}`}
       >
         <div className="flex justify-between text-xl">
@@ -16,9 +16,12 @@ const RatingCard = (params: { restaurant: Restaurant }) => {
             <p className="ml-2 font-light text-xs ">ratings</p>
           </div>
         </div>
-        <RatingLength length={params.restaurant.avgScore} ratingColor="bg-background" />
+        <div className="flex items-center">
+          <RatingLength length={params.restaurant.avgScore} ratingColor="bg-card border-white border" />
+          <p className="ml-2 mt-2 text-xs">{params.restaurant.avgScore}</p>
+        </div>
       </Link>
-      <div className="ml-3 mr-3 font-semibold text-text-color-p text-xl">{params.restaurant.avgScore}</div>
+      <div className="ml-3 mr-14 font-semibold text-text-color-p text-xl">{params.index + 1}</div>
     </div>
   );
 };

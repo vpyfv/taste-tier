@@ -31,7 +31,7 @@ const getLatestRatedUsers = async (restId: string, howMany: number): Promise<Res
   const q = query(restUserRef, orderBy("rated_time", "desc"), limit(5));
   const restUserDocs = await getDocs(q);
   const ratedUsers = restUserDocs.docs.map(
-    (doc): RestRatedUser => ({ name: doc.data()!.user_name, rating: doc.data()!.rating, userId: doc.data()!.user_name })
+    (doc): RestRatedUser => ({ name: doc.data()!.user_name, rating: doc.data()!.rating, userId: doc.id })
   );
   return ratedUsers;
 };

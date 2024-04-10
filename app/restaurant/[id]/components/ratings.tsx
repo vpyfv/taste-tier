@@ -16,7 +16,7 @@ const Ratings = ({ userRatings }: { userRatings: RestUserRatingDetail[] }) => {
         </p>
       </div>
     ) : (
-      <></>
+      <div key={i}></div>
     )
   );
 };

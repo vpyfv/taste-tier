@@ -28,6 +28,12 @@ const RatingPage = () => {
   }, []);
 
   useEffect(() => {
+    if (user == null) {
+      redirect("/home");
+    }
+  }, [user]);
+
+  useEffect(() => {
     if (isSubmitted) {
       redirect("/home");
     }
@@ -82,7 +88,8 @@ const RatingPage = () => {
           userName: user?.displayName ?? "",
           createdTimestamp: serverTimestamp(),
         })
-      )
+      ),
+      user!.uid
     );
     // await new Promise((resolve) => setTimeout(resolve, 3000));
     setIsSubmitting(false);

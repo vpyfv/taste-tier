@@ -33,7 +33,7 @@ const ProfileUpdatePage = ({ params: { id } }: { params: { id: string } }) => {
               <span>Name</span>
               <input
                 type="text"
-                className="mt-1 block w-full rounded-md bg-card border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 focus:text-text-color-s"
+                className="mt-1 block w-full rounded-md border bg-background focus:ring-0 focus:text-text-color-p"
                 placeholder={userDetails?.name}
                 name="name"
               />
@@ -42,7 +42,7 @@ const ProfileUpdatePage = ({ params: { id } }: { params: { id: string } }) => {
               <span>Profile Pic Url</span>
               <input
                 type="url"
-                className="mt-1 block w-full rounded-md bg-card border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 focus:text-text-color-s"
+                className="mt-1 block w-full rounded-md border bg-background focus:ring-0 focus:text-text-color-p"
                 placeholder={userDetails?.pic}
                 name="image"
               />
@@ -50,12 +50,15 @@ const ProfileUpdatePage = ({ params: { id } }: { params: { id: string } }) => {
             <label className="block">
               <span>Bio</span>
               <textarea
-                className="mt-1 block w-full rounded-md bg-card border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 rows=5 focus:text-text-color-s h-40"
+                className="mt-1 block w-full rounded-md border bg-background focus:ring-0 focus:text-text-color-p rows-5 h-40"
                 placeholder={userDetails?.bio}
                 name="bio"
               ></textarea>
             </label>
-            <button className="bg-white w-min mx-auto px-4 py-2 rounded-lg text-text-color-s" type="submit">
+            <button
+              className="bg-card w-min mx-auto px-8 py-2 rounded-lg text-text-color-s hover:drop-shadow-2xl"
+              type="submit"
+            >
               Submit
             </button>
           </div>

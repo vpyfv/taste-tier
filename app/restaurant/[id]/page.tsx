@@ -6,6 +6,7 @@ import { RestDetail } from "./types";
 import { useEffect, useState } from "react";
 import { getRestaurantDetails } from "./infra";
 import Link from "next/link";
+import { MapPin } from "lucide-react";
 
 const RestaurantPage = ({ params: { id } }: { params: { id: string } }) => {
   const [restDetails, setRestDetails] = useState<RestDetail>();
@@ -31,11 +32,15 @@ const RestaurantPage = ({ params: { id } }: { params: { id: string } }) => {
                 <span className="text-xl font-semibold">Address: </span>
                 <span className="font-light">{restDetails.address}</span>
               </p>
-              <Link href={restDetails.location} rel="noopener noreferrer" target="_blank">
-                Maps
+              <Link
+                href={restDetails.location}
+                rel="noopener noreferrer"
+                target="_blank"
+                className="border border-card rounded-full p-2 hover:bg-card hover:drop-shadow-2xl"
+              >
+                <MapPin size={30} className="hover:text-text-color-s" />
               </Link>
             </div>
-            <div className="h-2"></div>
             <div>
               <span className="text-xl font-semibold">Timings: </span>
               <span className="font-light">{restDetails.timings}</span>
