@@ -3,7 +3,7 @@ export type RestDetail = {
   image: string;
   address: string;
   location: string;
-  timings: string;
+  timings: string[];
   avgScore: number;
   ratingCount: number;
   userRatings: RestUserRatingDetail[];
