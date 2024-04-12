@@ -8,18 +8,21 @@ import { UserAuth } from "../auth/authContext";
 
 const HomePage = () => {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+  const [dataGenerated, setDataGenerated] = useState(false);
   const { user } = UserAuth();
   useEffect(() => {
-    generateData().then(() => {});
+    generateData().then(() => setDataGenerated(true));
+    console.log("calling after generated data");
 
-    const unsubscribe = getRestaurantsDataStream((data) => {
-      setRestaurants(data);
-    });
-
-    return () => {
-      unsubscribe();
-    };
-  }, []);
+    if (dataGenerated) {
+      const unsubscribe = getRestaurantsDataStream((data) => {
+        setRestaurants(data);
+      });
+      return () => {
+        unsubscribe();
+      };
+    }
+  }, [dataGenerated]);
   return (
     <div className="flex items-center h-screen">
       <div className="w-1/3 text-text-color-p">

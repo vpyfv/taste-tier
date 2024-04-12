@@ -15,25 +15,29 @@ import { v4 as uuidv4 } from "uuid";
 
 export const generateData = async () => {
   const restIds = [...Array(20)].map((_, __) => uuidv4());
-  const userIds = [...Array(10)].map((_, __) => uuidv4());
-  const usersCreated = await createUsers(userIds);
+  const users = [...Array(10)].map((_, i) => ({
+    user_name: "user_" + i,
+    user_id: uuidv4(),
+  }));
+
+  const usersCreated = await createUsers(users);
   const restCreated = await createRestaurants(restIds);
   if (usersCreated && restCreated) {
-    await addUsersRatingsToRestaurants(restIds, userIds);
+    await addUsersRatingsToRestaurants(restIds, users);
   }
 };
 
-const createUsers = async (userIds: string[]): Promise<boolean> => {
+const createUsers = async (users: { user_name: string; user_id: string }[]): Promise<boolean> => {
   const userRef = collection(FirebaseDB, "user");
   const q = query(userRef, limit(1));
   const docs = await getDocs(q);
   if (docs.docs.length == 0) {
-    userIds.forEach(async (userId, i) => {
-      await setDoc(doc(FirebaseDB, "user", userId), {
+    users.forEach(async (user, i) => {
+      await setDoc(doc(FirebaseDB, "user", user.user_id), {
         profile_pic: "https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg",
         created_time: serverTimestamp(),
         bio: "Lorem ipsum dolor sit amet consectetur. Cras tincidunt hac duis sit faucibus duis. Est lobortis sed a turpis placerat luctus enim sit pulvinar. Dolor nunc et mauris sapien fermentum a sed. Quam tellus ametpharetra eget vehicula maecenas nisi. Imperdiet leo amet non ut pellentesque consectetur metus eratnascetur. Adipiscing imperdiet ac tincidunt ipsum vel ipsum non massa. Nisi mi sed proin fringilla acadipiscing. Sapien eu donec quis orci aliquam. Volutpat purus quis lacus varius eu iaculis risus. Dolorlectus facilisi dignissim eu. Amet consectetur urna egestas in viverra. Accumsan donec odio nulla",
-        user_name: userId,
+        user_name: user.user_name,
       });
     });
     console.log("creating users");
@@ -74,21 +78,21 @@ const createRestaurants = async (restIds: string[]): Promise<boolean> => {
   return false;
 };
 
-const addUsersRatingsToRestaurants = async (restIds: string[], userIds: string[]) => {
+const addUsersRatingsToRestaurants = async (restIds: string[], users: { user_name: string; user_id: string }[]) => {
   console.log("creating review for users");
-  for (const userId of userIds) {
-    console.log("updating rating for user:" + userId);
+  for (const user of users) {
+    console.log("updating rating for user:" + user);
     // const shuffledRestIds = restIds.sort(() => 0.5 * Math.random());
     const randomRestIds = pickRandomElements(restIds, 10);
     for (const restId of randomRestIds) {
       console.log("updating rating for restaurant:" + restId);
       const newRating = Math.floor(Math.random() * 10) + 1;
       const restUserRatingDoc = {
-        user_name: userId,
+        user_name: user.user_name,
         rated_time: serverTimestamp(),
         rating: newRating,
       };
-      const existingUserDocRef = doc(FirebaseDB, "restaurant", restId, "users", userId);
+      const existingUserDocRef = doc(FirebaseDB, "restaurant", restId, "users", user.user_id);
 
       const existingRestDocRef = doc(FirebaseDB, "restaurant", restId);
       const existingRestDoc = await getDoc(existingRestDocRef);
@@ -118,7 +122,7 @@ const addUsersRatingsToRestaurants = async (restIds: string[], userIds: string[]
         });
         console.log({ avg_score: newAvgRating, rating_count: newRatingCount, user_ratings: newUserRatings });
       } else {
-        console.log("user exists:" + userId);
+        console.log("user exists:" + user);
         if (existingRatingCount != 0) {
           const existingUserRating = existingUserDoc.data()!.rating;
           const newAvgRating = Math.round(
