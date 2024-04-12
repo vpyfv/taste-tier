@@ -36,6 +36,7 @@ const createUsers = async (userIds: string[]): Promise<boolean> => {
         user_name: userId,
       });
     });
+    console.log("creating users");
     return true;
   }
   return false;
@@ -67,12 +68,14 @@ const createRestaurants = async (restIds: string[]): Promise<boolean> => {
           "https://images.unsplash.com/photo-1707343844152-6d33a0bb32c3?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       });
     });
+    console.log("creating restaurants");
     return true;
   }
   return false;
 };
 
 const addUsersRatingsToRestaurants = async (restIds: string[], userIds: string[]) => {
+  console.log("creating review for users");
   for (const userId of userIds) {
     console.log("updating rating for user:" + userId);
     // const shuffledRestIds = restIds.sort(() => 0.5 * Math.random());

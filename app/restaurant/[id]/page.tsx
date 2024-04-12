@@ -43,7 +43,11 @@ const RestaurantPage = ({ params: { id } }: { params: { id: string } }) => {
             </div>
             <div>
               <span className="text-xl font-semibold">Timings: </span>
-              <span className="font-light">{restDetails.timings}</span>
+              {restDetails.timings.map((t, i) => (
+                <div className="ml-10" key={i}>
+                  {t}
+                </div>
+              ))}
             </div>
           </div>
           <div className="w-3/4 pl-40">
