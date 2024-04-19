@@ -80,7 +80,13 @@ export const submitRatings = async (ratings: RestSubmit[], userId: string) => {
           (existingAvgScore * existingRatingCount - existingUserRating + newRating) / existingRatingCount
         );
         const newUserRatings = existingUserRatingsCount.map((userRatingCount, i) =>
-          i == existingUserRating - 1 ? userRatingCount - 1 : i == newRating ? userRatingCount + 1 : userRatingCount
+          i == existingUserRating - 1
+            ? userRatingCount == 0
+              ? 0
+              : userRatingCount - 1
+            : i == newRating
+            ? userRatingCount + 1
+            : userRatingCount
         );
         await updateDoc(existingRestDocRef, {
           avg_score: newAvgRating,
