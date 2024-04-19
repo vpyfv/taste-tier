@@ -24,7 +24,11 @@ const UserPage = ({ params: { id } }: { params: { id: string } }) => {
         <>
           <div className="mr-40 ml-40">
             <div className="flex flex-col items-center">
-              <Image src={userDetails.pic} alt="" width={350} height={350} className="shadow rounded-3xl"></Image>
+              {userDetails.pic == "" || userDetails.pic.length == 0 ? (
+                <div className="w-80 h-80 rounded-3xl bg-card"></div>
+              ) : (
+                <Image src={userDetails.pic} alt="" width={350} height={350} className="shadow rounded-3xl"></Image>
+              )}
               <h1 className="text-xl font-semibold mt-4 text-center">{userDetails.name}</h1>
               <p className="self-end text-sm font-light mt-4">
                 created: {userDetails.daysAgo == 0 ? "today" : userDetails.daysAgo + " days "}
